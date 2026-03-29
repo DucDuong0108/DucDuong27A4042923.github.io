@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin sinh viên HVNH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card">
+        <h2>Kết quả xử lý</h2>
+        <div id="display" class="info-text">
+            Đang tính toán...
+        </div>
+    </div>
+
+    <script>
+    
+        const fullName = "Nong Lang Duc Duong";
+        const studentId = "27A4042923";
+
+        const parts = fullName.toLowerCase().split(" ");
+        const lastNameChar = parts[0][0];   
+        const middleChar = parts[1][0];    
+        const firstName = parts[2];         
+        
+        const email = `${lastNameChar}${middleChar}${firstName}.${studentId.toLowerCase()}@hvnh.edu.vn`;
+
+        const coursePeriod = studentId.substring(0, 2); 
+        
+        let faculty = "Chưa xác định";
+        if (studentId.includes("2xA404xxxx")) {
+            faculty = "Công Nghệ Thông Tin & Kinh Tế So";
+        }
+
+        const lastFour = studentId.slice(-4); 
+        const sum = lastFour.split('')
+                            .reduce((total, num) => total + parseInt(num), 0);
+
+
+        const displayDiv = document.getElementById("display");
+        displayDiv.innerHTML = `
+            Email: <span class="email-box">${email}</span>
+            <br>
+            Xin chào <span class="highlight">${fullName}</span>, 
+            bạn là sinh viên khóa <span class="highlight">${coursePeriod}</span>, 
+            khoa <b>${faculty}</b>.
+            <br><br>
+            Tổng 4 số cuối trong mã sinh viên là: <b>${sum}</b>
+        `;
+    </script>
+</body>
+</html>
