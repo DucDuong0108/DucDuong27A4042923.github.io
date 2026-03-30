@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin sinh viên HVNH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card">
+        <h2>Kết quả xử lý</h2>
+        <div id="display" class="info-text">
+            Đang tính toán...
+        </div>
+    </div>
+
+    <script>
+
+        async function xuLyThongTin() {
+            const fullName = "Nong Lang Duc Duong";
+            const studentId = "27A4042923";
+const parts = fullName.toLowerCase().trim().split(/\s+/); 
+
+const firstName = parts[parts.length - 1]; 
+let initials = "";
+for (let i = 0; i < parts.length - 1; i++) {
+    initials += parts[i][0]; 
+}
+
+const email = `${initials}${firstName}.${studentId.toLowerCase()}@hvnh.edu.vn`;
+
+            const coursePeriod = studentId.substring(0, 2); 
+            const facultyCode = studentId.substring(3, 6);
+            let faculty = "Chưa xác định";
+
+            try {
+                const response = await fetch('MSV.txt');
+                const text = await response.text();
+
+                const lines = text.split('\n');
+                const facultyMap = {};
+
+                lines.forEach(line => {
+                    const cleanLine = line.trim();
+                    if (cleanLine.includes('-')) {
+                        const [code, name] = cleanLine.split('-');
+                        facultyMap[code] = name;
+                    }
+                });
+
+                if (facultyMap[facultyCode]) {
+                    faculty = facultyMap[facultyCode];
+                }
+            } catch (error) {
+                console.error("Lỗi khi đọc file MSV.txt:", error);
+            }
+            const lastFour = studentId.slice(-4); 
+            const sum = lastFour.split('')
+                                .reduce((total, num) => total + parseInt(num), 0);
+
+            const displayDiv = document.getElementById("display");
+            displayDiv.innerHTML = `
+                Email: <span class="email-box">${email}</span>
+                <br>
+                Xin chào <span class="highlight">${fullName}</span>, 
+                bạn là sinh viên khóa <span class="highlight">${coursePeriod}</span>, 
+                khoa <b>${faculty}</b>.
+                <br><br>
+                Tổng 4 số cuối trong mã sinh viên là: <b>${sum}</b>
+            `;
+        }
+        xuLyThongTin();
+    </script>
+</body>
+</html>
