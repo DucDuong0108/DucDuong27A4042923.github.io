@@ -1,0 +1,242 @@
+/* --- Reset cơ bản --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Sử dụng font hiện đại */
+}
+
+body {
+    background-color: #f4f7f9; /* Màu nền xám nhạt rất nhẹ */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Căn giữa card theo chiều dọc */
+    padding: 20px;
+}
+
+/* --- Container chính --- */
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- Card Sinh viên (Thon gọn) --- */
+.student-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px; /* Độ rộng giới hạn để card thon gọn */
+    border-radius: 16px; /* Bo góc nhiều hơn */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Đổ bóng mềm mại */
+    overflow: hidden; /* Đảm bảo con không tràn ra khỏi góc bo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-5px); /* Hiệu ứng nổi lên khi hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Phần Nhập liệu (Form) --- */
+.form-section {
+    padding: 30px 25px;
+}
+
+.brand-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.brand-header .logo {
+    height: 50px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.brand-header h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50; /* Màu xanh đen sang trọng */
+}
+
+/* --- Input Group --- */
+.input-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+    color: #546e7a;
+    font-size: 0.85rem;
+    text-transform: uppercase; /* Chữ in hoa nhỏ cho nhãn */
+    letter-spacing: 0.5px;
+}
+
+.input-group .required {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e6ed; /* Viền mỏng màu xám */
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #2c3e50;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #3498db; /* Màu viền khi focus xanh dương */
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.15); /* Hiệu ứng hào quang */
+}
+
+/* --- Nút bấm --- */
+.btn-lookup {
+    background-color: #2c3e50; /* Màu nền đậm */
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.btn-lookup:hover {
+    background-color: #1a252f;
+}
+
+.btn-lookup:active {
+    transform: scale(0.98); /* Hiệu ứng nhấn nút */
+}
+
+/* --- Phần Kết quả --- */
+.result-section {
+    background-color: #f8fbfd; /* Nền khác biệt một chút cho phần kết quả */
+    border-top: 1px solid #edf2f6;
+    padding: 25px;
+    animation: slideDown 0.4s ease-out; /* Hiệu ứng hiện ra */
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.result-header h2 {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #90a4ae;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.btn-close:hover {
+    color: #e74c3c;
+}
+
+/* --- Chi tiết kết quả --- */
+.info-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #455a64;
+}
+
+.result-item {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #edf2f6;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.result-item label {
+    display: block;
+    font-size: 0.8rem;
+    color: #90a4ae;
+    margin-bottom: 4px;
+}
+
+.email-box {
+    display: inline-block;
+    background-color: #e3f2fd;
+    color: #1565c0;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: monospace; /* Font code cho email */
+    font-size: 0.9rem;
+}
+
+.highlight {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.highlight-faculty {
+    color: #27ae60; /* Màu xanh lá cho tên Khoa */
+    font-weight: 600;
+}
+
+.sum-item {
+    text-align: center;
+    margin-top: 15px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #edf2f6;
+}
+
+.sum-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #2c3e50;
+}
+
+/* --- Hiệu ứng Loading --- */
+.loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: none;
+    margin-left: 10px;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
